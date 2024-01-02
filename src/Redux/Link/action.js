@@ -40,7 +40,6 @@ export function AddLink() {
 
 
   export function loadLinkThunk() {
-    console.log(Date.now(), "thunk action");
     return (dispatch) => {
       // async
       axios

@@ -5,11 +5,19 @@ import Landing from './Page/Landing'
 import Profile from './Page/Profile';
 import React, { useState } from 'react';
 import EditProfile from './Components/Profile/EditProfile'
+import { useSelector } from "react-redux";
 import Counter from './Components/Counter';
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, Navigate } from 'react-router-dom'
 import SeeProfile from './Components/Profile/SeeProfile';
 import CommentCardList from './Components/CommentCard/CommentCardList';
+import Login from './Login';
 import {LinksList} from './Page/LinksList';
+
+function RequireAuth({ children, redirectTo }) {
+  let isAuthenticated = useSelector((state) => state.authStore.isAuthenticated);
+  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+}
+
 function App() {
   const [links, setLinks] = useState([
     { id: 1, url: 'https://example.com' },
@@ -32,8 +40,14 @@ function App() {
         <Link style={link} to="/commentCard">Comment Card</Link>
         
         <Routes>
-          <Route path='/' element={<Landing />}/>
-          <Route path='/home' element={<Home />}/>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='/home' element={
+            <RequireAuth redirectTo="/login">
+              <Home />
+            </RequireAuth>
+          }
+          />
           <Route path='/profile' element={<Profile />}>
             <Route path="editProfile" element={<EditProfile />} />
             <Route path="seeProfile" element={<SeeProfile />} />
