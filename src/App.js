@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import Home from './Page/Home'
 import Landing from './Page/Landing'
@@ -19,7 +19,7 @@ function RequireAuth({ children, redirectTo }) {
 }
 
 function App() {
-  const [links, setLinks] = useState([
+  const [links] = useState([
     { id: 1, url: 'https://example.com' },
     { id: 2, url: 'https://google.com' },
     { id: 3, url: 'https://facebook.com' },

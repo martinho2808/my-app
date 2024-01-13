@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { loginThunk } from "./Redux/authSlice";
-
+import md5 from "md5"
 import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
@@ -23,7 +23,7 @@ const Login = (props) => {
   }, [auth, navigate]);
 
   const login = () => {
-    dispatch(loginThunk(email, password));
+    dispatch(loginThunk(email, md5(password)));
   };
 
   return (

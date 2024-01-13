@@ -4,8 +4,8 @@ import CommentCard from "./CommentCard";
 import DisplayList from "./DisplayList";
 
 const CommentCardList = (props) => {
-  const [name, setName] = useState("Jyoti");
-  const [list, setList] = useState([
+  const [name] = useState("Jyoti");
+  const [list] = useState([
     {
       id: 0,
       item: (
